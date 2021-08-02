@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TripService } from 'src/app/core/services/trip.service'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'trip-project';
+
+  constructor(private tripService: TripService) {}
+
+  ngOnInit() {
+    this.tripService.getAllPoints().subscribe()
+  }
 }
