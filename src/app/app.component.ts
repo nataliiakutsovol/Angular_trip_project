@@ -8,10 +8,4 @@ import { TripService } from 'src/app/core/services/trip.service'
 })
 export class AppComponent {
   title = 'trip-project';
-
-  constructor(private tripService: TripService) {}
-
-  ngOnInit() {
-    this.tripService.getAllPoints().subscribe()
-  }
 }
