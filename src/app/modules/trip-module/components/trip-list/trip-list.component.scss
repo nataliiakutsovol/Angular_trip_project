@@ -1,0 +1,29 @@
+.page-body {
+    background-color: #f2f2f2;
+
+    .trip-list {
+        position: relative;
+        z-index: 0;
+        padding-top: 30px;
+        padding-left: 35px;
+
+        .trip-titles {
+            color: #b4b4b4;
+        }
+
+        .trip-label:first-child {
+            padding-left: 35px;
+        }
+    }
+
+    .trip-list::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0px;
+        bottom: 0;
+        left: 34px;
+        width: 2px;
+        background-color: rgba(255, 255, 255, 0.68);
+    }
+}

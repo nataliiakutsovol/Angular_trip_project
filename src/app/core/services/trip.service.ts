@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { TripDestinationsModel } from '../models/trip-destinations.model';
 import { TripItemModel  } from '../models/trip-item.model';
 
 @Injectable({
@@ -17,8 +18,8 @@ export class TripService {
     return this.http.get<TripItemModel[]>(`${this.server_api}/points`);
   }
 
-  getAllDestinations() {
-    return this.http.get(`${this.server_api}/destinations`);
+  getAllDestinations(): Observable<TripDestinationsModel[]> {
+    return this.http.get<TripDestinationsModel[]>(`${this.server_api}/destinations`);
   }
 
   getAllOffers() {

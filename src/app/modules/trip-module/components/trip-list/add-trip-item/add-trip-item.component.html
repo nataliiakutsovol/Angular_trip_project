@@ -1,0 +1,44 @@
+<form class="event__edit">
+    <section class="event__header">
+        <div class="event__type-wrapper">
+            <label class="event__type  event__type-btn" for="event-type-toggle">
+                <img class="event__type-icon" width="17" height="17" src="./../../../../../../assets/img/png/bus.png" alt="Event type icon">
+            </label>
+        </div>
+    
+        <div class="event__field-group  event__field-group--destination">
+            <label class="event__label  event__type-output" for="event-destination"> Bus to </label>
+            <input class="event__input  event__input--destination" id="event-destination" type="text" name="event-destination" value="" list="destination-list-1" required="">
+            <datalist id="destination-list-1">
+            <option value="Rome"></option><option value="New York"></option><option value="Milan"></option><option value="Paris"></option><option value="Berlin"></option>
+            </datalist>
+        </div>
+    
+        <div class="event__field-group  event__field-group--time">
+            <label class="visually-hidden" for="event-start-time-1"> From </label>
+            <!-- | date:'short' -->
+            <input class="event__input event__input--time flatpickr-input" id="event-start-time-1" type="text" name="event-start-time" value="10/08/2021 15:10" readonly="readonly">
+            —
+            <label class="visually-hidden" for="event-end-time-2"> To </label>
+            <input class="event__input event__input--time flatpickr-input" id="event-end-time-2" type="text" name="event-end-time" value="10/08/2021 15:10" readonly="readonly">
+        </div>
+    
+        <div class="event__field-group  event__field-group--price">
+            <label class="event__label" for="event-price-2">€</label>
+            <input class="event__input  event__input--price" id="event-price-1" type="number" name="event-price" value="" required="">
+        </div>
+    
+        <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
+        <button class="event__reset-btn btn" type="reset">Delete</button>
+    
+        <button class="event__favorite-btn">
+            <svg class="event__favorite-icon" width="28" height="28" viewBox="0 0 28 28">
+              <path d="M14 21l-8.22899 4.3262 1.57159-9.1631L.685209 9.67376 9.8855 8.33688 14 0l4.1145 8.33688 9.2003 1.33688-6.6574 6.48934 1.5716 9.1631L14 21z"></path>
+            </svg>
+        </button>
+    
+        <button class="event__rollup-btn" type="button"></button>
+    </section>
+      
+    <section class="event__details"></section>
+  </form>

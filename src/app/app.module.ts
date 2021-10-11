@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 import { TripModule } from './modules/trip-module/trip.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     TripModule,
-    NgbModule
+    NgbModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [
     {

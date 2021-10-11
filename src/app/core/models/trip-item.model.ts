@@ -1,12 +1,12 @@
-export interface TipListModel {
-    points: Array<TripItemModel>;
-}
-
 export interface TripItemModel {
     base_price?: number;
     date_from?: string;
     date_to?: string;
-    destination?: TripDestinationModel;
+    destination: {
+        description: string;
+        name: string;
+        pictures: Array<PictureModel>;
+    };
     id?: string;
     is_favorite?: boolean;
     offers?: Array<TripOffersModel>;
@@ -16,13 +16,6 @@ export interface TripItemModel {
 export interface TripOffersModel {
     title: string, 
     price: number
-}
-
-export interface TripDestinationModel {
-    description: string;
-    name: string;
-    pictures: Array<PictureModel>;
-
 }
 
 export interface PictureModel {

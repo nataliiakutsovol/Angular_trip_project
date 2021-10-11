@@ -1,0 +1,1 @@
+export const HeaderLables = ['EVENT', 'TIME', 'PRICE', 'OFFERS']

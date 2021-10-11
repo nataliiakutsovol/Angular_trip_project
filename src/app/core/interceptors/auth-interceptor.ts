@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const intercept = req.url.includes(environment.server);
-        const token = 'wo0a590ik29679a';
+        const token = 'wo0a590ik29679b';
         let authReq = req;
 
         if(intercept) {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TripService } from 'src/app/core/services/trip.service';
-import { TripItemModel } from 'src/app/core/models/trip-item.model'
+import { HeaderLables } from './config'
 
 @Component({
   selector: 'app-trip-list',
@@ -9,17 +8,12 @@ import { TripItemModel } from 'src/app/core/models/trip-item.model'
 })
 export class TripListComponent implements OnInit {
 
-  tripItems: Array<TripItemModel> = [];
-  constructor(private tripService: TripService) {}
+  headerLables = HeaderLables;
+  
+  constructor() {}
 
   ngOnInit(): void {
-    this.getPoints();
   }
 
-  getPoints() {
-    this.tripService.getAllPoints().subscribe(res => {
-      this.tripItems = res
-      console.log(res)
-    })
-  }
+
 }
