@@ -9,6 +9,9 @@ import { TripModule } from './modules/trip-module/trip.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 
+import { tripsReducer, destinationsReducer, offersReducer } from 'src/app/core/state/trip-list.reducer';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +22,7 @@ import { StoreModule } from '@ngrx/store';
     HttpClientModule,
     TripModule,
     NgbModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({trips: tripsReducer, destinations: destinationsReducer, offers: offersReducer }, {})
   ],
   providers: [
     {

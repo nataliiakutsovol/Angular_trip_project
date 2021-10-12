@@ -1,11 +1,11 @@
 
-<section class="d-flex justify-content-between trip-item" *ngFor="let item of tripItems">
+<section class="d-flex justify-content-between trip-item" *ngFor="let item of tripList$ | async">
     <div class="d-flex col-4">
         <div class="event__type">
             <img class="event__type-icon" width="42" height="42" [src]="getIcon(item.type)" alt="Event type icon">
         </div>
         <div class="d-flex">
-            <div class="event__title">{{ item.type }}</div>
+            <div class="event__title">{{ item.type | titlecase }}</div>
             <div class="ml-2 mr-2">{{ checkType(item.type) }}</div>
             <div class="event__title">{{ item.destination.name }}</div>
         </div>

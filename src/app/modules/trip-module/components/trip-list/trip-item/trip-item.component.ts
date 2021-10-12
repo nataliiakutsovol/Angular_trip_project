@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TripItemModel } from 'src/app/core/models/trip-item.model';
 import { TripService } from 'src/app/core/services/trip.service';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { TripState } from 'src/app/core/state/initial-state';
+import { select, Store } from '@ngrx/store';
+import { selectTripList } from 'src/app/core/state/trip.selectors';
+import { retrievedTripList } from 'src/app/core/state/trip.actions';
 
 @Component({
   selector: 'app-trip-item',
@@ -9,30 +15,21 @@ import { TripService } from 'src/app/core/services/trip.service';
 })
 export class TripItemComponent implements OnInit {
 
-  tripItems: Array<TripItemModel> = [];
-  constructor(private tripService: TripService) { }
+  tripList$: Observable<TripItemModel[]> = this.store.pipe(select(selectTripList))
+
+  constructor(private tripService: TripService,
+    private store: Store<TripState>) { }
 
   ngOnInit(): void {
     this.getPoints();
-    this.getDestignations();
-    this.getOffers()
   }
 
   getPoints() {
-    this.tripService.getAllPoints().subscribe(res => {
-      this.tripItems = res;
-    },
-    error => {
-      console.warn(error);
+    this.tripService.getAllPoints().pipe(
+      map((trips) => trips.sort((a: any, b: any) => { return +new Date(a.date_from) - +new Date(b.date_from) }))
+    ).subscribe((trips) => {
+      this.store.dispatch(retrievedTripList({ trips }));
     })
-  }
-
-  getDestignations() {
-    this.tripService.getAllDestinations().subscribe()
-  }
-
-  getOffers() {
-    this.tripService.getAllOffers().subscribe()
   }
 
   checkType(item: any) {

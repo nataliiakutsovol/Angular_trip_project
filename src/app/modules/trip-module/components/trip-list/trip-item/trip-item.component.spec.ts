@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TripItemComponent } from './trip-item.component';
@@ -8,7 +9,8 @@ describe('TripItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TripItemComponent ]
+      declarations: [ TripItemComponent ],
+      imports: [ HttpClientTestingModule],
     })
     .compileComponents();
   });

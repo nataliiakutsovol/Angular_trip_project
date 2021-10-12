@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { TripDestinationsModel } from '../models/trip-destinations.model';
 import { TripItemModel  } from '../models/trip-item.model';
+import { TripOffersModel } from '../models/trip-offers.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,11 @@ export class TripService {
     return this.http.get<TripDestinationsModel[]>(`${this.server_api}/destinations`);
   }
 
-  getAllOffers() {
-    return this.http.get(`${this.server_api}/offers`);
+  getAllOffers(): Observable<TripOffersModel[]> {
+    return this.http.get<TripOffersModel[]>(`${this.server_api}/offers`);
+  }
+
+  updateTripItem(pointId: number, body: any): Observable<any> {
+    return this.http.put<any>(`${this.server_api}/points/:${pointId}`, body)
   }
 }
