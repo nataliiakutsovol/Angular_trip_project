@@ -1,19 +1,44 @@
-<form class="event__edit">
+<form [formGroup]="tripForm" class="event__edit">
     <section class="event__header">
+
+        <!-- Type of destination -->
+
         <div class="event__type-wrapper">
-            <label class="event__type  event__type-btn" for="event-type-toggle">
-                <img class="event__type-icon" width="17" height="17" src="./../../../../../../assets/img/png/bus.png" alt="Event type icon">
-            </label>
+            <ng-select
+                [items]="offers$ | async"
+                bindValue="type"
+                bindLabel="type"
+                formControlName="tripType"
+                [searchable]="false"
+                [clearable]="false"
+                (change)="selectType()">
+                <ng-template ng-option-tmp ng-label-tmp
+                    let-item="item">
+                    <div class="d-flex align-items-center">
+                        <div class="event__type  event__type-btn mr-2">
+                            <img class="event__type-icon" width="17" height="17" [src]="getIcon(item.type)" alt="Event type icon">
+                        </div>
+                        {{item.type }}
+                    </div>
+                </ng-template>
+            </ng-select>
         </div>
     
+        <!-- City -->
         <div class="event__field-group  event__field-group--destination">
-            <label class="event__label  event__type-output" for="event-destination"> Bus to </label>
-            <input class="event__input  event__input--destination" id="event-destination" type="text" name="event-destination" value="" list="destination-list-1" required="">
-            <datalist id="destination-list-1">
-            <option value="Rome"></option><option value="New York"></option><option value="Milan"></option><option value="Paris"></option><option value="Berlin"></option>
-            </datalist>
+            <ng-select
+                class="destination__ng-select"
+                bindValue="name"
+                bindLabel="name"
+                formControlName="tripDestination"
+                [searchable]="false"
+                [clearable]="false"
+                (change)="selectDestination()">
+                <ng-option *ngFor="let item of destinations$ | async" [value]="item.name">{{ item.name }}</ng-option>
+            </ng-select>
         </div>
     
+        <!-- Date -->
         <div class="event__field-group  event__field-group--time">
             <label class="visually-hidden" for="event-start-time-1"> From </label>
             <!-- | date:'short' -->
@@ -22,7 +47,8 @@
             <label class="visually-hidden" for="event-end-time-2"> To </label>
             <input class="event__input event__input--time flatpickr-input" id="event-end-time-2" type="text" name="event-end-time" value="10/08/2021 15:10" readonly="readonly">
         </div>
-    
+        
+        <!-- Price -->
         <div class="event__field-group  event__field-group--price">
             <label class="event__label" for="event-price-2">€</label>
             <input class="event__input  event__input--price" id="event-price-1" type="number" name="event-price" value="" required="">
@@ -40,5 +66,31 @@
         <button class="event__rollup-btn" type="button"></button>
     </section>
       
-    <section class="event__details"></section>
+    <section *ngIf="selectedType || selectedDestination" class="event__details">
+        <div *ngIf="selectedType" class="offers">
+            <h3 class="event__section-title  event__section-title--offers">Offers</h3>
+            <div class="d-flex">
+                <div *ngFor="let offer of selectedType[0].offers; let i = index">
+                    <div class="event__offer-selector mr-3">
+                        <input class="event__offer-checkbox visually-hidden" [id]='i' type="checkbox" [name]="selectedType[0].type">
+                        <label class="event__offer-label" [for]="i">
+                            <span class="pr-3">{{ offer.title }}</span>
+                            <span>+ {{ offer.price }}</span>
+                        </label>
+                      </div>
+                </div> 
+            </div>
+        </div>
+        <div *ngIf="selectedDestination" class="destinations mt-4">
+            <h3 class="event__section-title event__section-title--offers">DESTINATION</h3>
+            <p>{{ selectedDestination[0].description }}</p>
+            <div class="d-flex picture-container">
+                <div *ngFor="let picture of selectedDestination[0].pictures; let i = index">
+                    <div class="event__destinations-selector mr-3">
+                        <img [src]="picture.src" alt="img">
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
   </form>

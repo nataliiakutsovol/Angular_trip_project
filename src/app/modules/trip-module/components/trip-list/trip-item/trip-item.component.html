@@ -1,6 +1,6 @@
 
 <section class="d-flex justify-content-between trip-item" *ngFor="let item of tripList$ | async">
-    <div class="d-flex col-4">
+    <div class="d-flex col-3 mr-4">
         <div class="event__type">
             <img class="event__type-icon" width="42" height="42" [src]="getIcon(item.type)" alt="Event type icon">
         </div>
@@ -16,7 +16,7 @@
         <time class="event__end-time">{{ item.date_to | date: 'shortTime' }}</time>
     </div>
     <div class="col-2">{{ item.base_price }}</div>
-    <div class="col-3">
+    <div class="col-4">
         <div class="d-flex offers" *ngFor="let offer of item.offers">
             <div class="mr-2">{{ offer.title }}</div>
             <div>+ {{ offer.price }}</div>

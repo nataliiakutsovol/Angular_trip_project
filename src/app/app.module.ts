@@ -1,7 +1,6 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
@@ -22,7 +21,7 @@ import { tripsReducer, destinationsReducer, offersReducer } from 'src/app/core/s
     HttpClientModule,
     TripModule,
     NgbModule,
-    StoreModule.forRoot({trips: tripsReducer, destinations: destinationsReducer, offers: offersReducer }, {})
+    StoreModule.forRoot({destinations: destinationsReducer, trips: tripsReducer, offers: offersReducer }, {})
   ],
   providers: [
     {

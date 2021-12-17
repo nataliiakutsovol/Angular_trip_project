@@ -29,8 +29,8 @@ label {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 43px;
-            height: 43px;
+            width: 36px;
+            height: 36px;
             background-color: #ffffff;
             border-radius: 50%;
             border: 1px solid #0d8ae4;
@@ -52,6 +52,14 @@ label {
         .event__field-group--price,
         .event__input--price {
             width: 90px;
+        }
+
+        .event__field-group--destination {
+            min-width: 150px;
+
+            .destination__ng-select {
+                width: 100%;
+            }
         }
 
         .btn {
@@ -126,7 +134,45 @@ label {
     }
 
     .event__details {
-        padding: 20px 0 27px;
+        padding: 20px;
         border-top: 2px solid #ffd054;
+
+        .event__section-title {
+            font-size: 16px;
+            text-transform: uppercase;
+            color: #ffd054;
+        }
+
+        .event__offer-label {
+            display: block;
+            padding: 22px 30px 21px;
+            font-size: 17px;
+            line-height: 21px;
+            user-select: none;
+            background-color: #f2f2f2;
+            border-radius: 32px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: rgba(13, 138, 228, 0.6);
+            }
+        }
+
+        .event__offer-checkbox:checked + .event__offer-label {
+            background-color: #0d8ae4;
+        }
+
+        .picture-container {
+            overflow-x: auto;
+        }
+    }
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container {
+    border: none;
+
+    .ng-value-container {
+        padding: 0;
     }
 }

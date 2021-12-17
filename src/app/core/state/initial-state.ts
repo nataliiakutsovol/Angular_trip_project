@@ -12,5 +12,5 @@ export interface TripState {
 export const initialTripState: TripState = {
     trips: [],
     destinations: [],
-    offers: []
+    offers: [],
 }

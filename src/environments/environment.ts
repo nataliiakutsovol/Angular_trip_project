@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  server: 'https://12.ecmascript.pages.academy/big-trip'
+  server: 'https://13.ecmascript.pages.academy/big-trip'
 };
 
 /*
