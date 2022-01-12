@@ -14,3 +14,13 @@ export const retrievedOffers = createAction(
     '[Offer List/API] Retrieve Offers Success',
     props<{ offers: any}>()
 )
+
+export const retrivedNewForm = createAction(
+    'Retrieve New Form Success',
+    props<{isNewTripOpened: boolean}>()
+)
+
+export const retrievedEditMode = createAction(
+    'Retrieve Edit Mode Success',
+    props<{ isEditModeOpened: boolean}>()
+)

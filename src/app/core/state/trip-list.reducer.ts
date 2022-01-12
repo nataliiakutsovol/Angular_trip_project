@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { retrievedTripList, retrievedDestinations, retrievedOffers } from './trip.actions';
+import { retrievedTripList, retrievedDestinations, retrievedOffers, retrievedEditMode, retrivedNewForm } from './trip.actions';
 import { initialTripState } from './initial-state';
 
 export const tripsReducer = createReducer(
@@ -15,4 +15,14 @@ export const destinationsReducer = createReducer(
 export const offersReducer = createReducer(
     initialTripState.offers,
     on(retrievedOffers, (state, { offers }) => [...offers])
+)
+
+export const newFormReducer = createReducer(
+    initialTripState.isNewTripOpened,
+    on(retrivedNewForm, (state, { isNewTripOpened }) => isNewTripOpened)
+)
+
+export const editReducer = createReducer(
+    initialTripState.isEditModeOpened,
+    on(retrievedEditMode, (state, { isEditModeOpened }) => isEditModeOpened)
 )

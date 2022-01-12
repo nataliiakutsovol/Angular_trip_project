@@ -5,8 +5,8 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TripState } from 'src/app/core/state/initial-state';
 import { select, Store } from '@ngrx/store';
-import { selectTripList } from 'src/app/core/state/trip.selectors';
-import { retrievedTripList } from 'src/app/core/state/trip.actions';
+import { selectEditMode, selectTripList } from 'src/app/core/state/trip.selectors';
+import { retrievedEditMode, retrievedTripList } from 'src/app/core/state/trip.actions';
 
 @Component({
   selector: 'app-trip-item',
@@ -15,9 +15,12 @@ import { retrievedTripList } from 'src/app/core/state/trip.actions';
 })
 export class TripItemComponent implements OnInit {
 
-  tripList$: Observable<TripItemModel[]> = this.store.pipe(select(selectTripList))
+  selectedItemId: any;
+  tripList$: Observable<TripItemModel[]> = this.store.pipe(select(selectTripList));
+  isEditModeOpened$: Observable<Boolean> = this.store.pipe(select(selectEditMode));
 
-  constructor(private tripService: TripService,
+  constructor(
+    private tripService: TripService,
     private store: Store<TripState>) { }
 
   ngOnInit(): void {
@@ -32,6 +35,7 @@ export class TripItemComponent implements OnInit {
     })
   }
 
+  //винести в pipe
   checkType(item: any) {
     switch(item) {
       case 'check-in':
@@ -48,5 +52,10 @@ export class TripItemComponent implements OnInit {
 
   getIcon(type: any) {
     return './../../../../../assets/img/png/' + type + '.png';
+  }
+
+  openEditMode(item: any) {
+    this.store.dispatch(retrievedEditMode({ isEditModeOpened: true }));
+    this.selectedItemId = item.id;
   }
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { TripState } from 'src/app/core/state/initial-state';
+import { retrivedNewForm } from 'src/app/core/state/trip.actions';
+import { selectNewForm } from 'src/app/core/state/trip.selectors';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  isNewTripOpened$: Observable<Boolean> = this.store.pipe(select(selectNewForm))
+  constructor(private store: Store<TripState>,) { }
 
   ngOnInit(): void {
   }
 
+  openEditForm() {
+    this.store.dispatch(retrivedNewForm({ isNewTripOpened: true }));
+  }
 }

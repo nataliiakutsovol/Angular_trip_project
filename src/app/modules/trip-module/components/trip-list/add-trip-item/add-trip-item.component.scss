@@ -1,5 +1,7 @@
-input {
+input,
+input:focus {
     border: none;
+    outline: none;
 }
 
 label { 
@@ -19,10 +21,11 @@ label {
         display: flex;
         -ms-flex-align: center;
         align-items: center;
-        padding: 20px;
+        padding: 20px 24px;
 
         .event__type-wrapper {
             margin-right: 10px;
+            border-bottom: 1px solid #0d8ae4;
         }
 
         .event__type-btn {
@@ -54,8 +57,10 @@ label {
             width: 90px;
         }
 
+        .event__type-wrapper,
         .event__field-group--destination {
             min-width: 150px;
+            margin-top: -5px;
 
             .destination__ng-select {
                 width: 100%;
@@ -94,6 +99,7 @@ label {
             border: none;
             background-color: transparent;
             margin-right: 30px;
+            cursor: pointer;
 
             .event__favorite-icon {
                 fill: #ebebeb;
@@ -106,35 +112,17 @@ label {
             }
         }
 
+        .event__favorite-checkbox:checked + .event__favorite-btn .event__favorite-icon {
+            fill: #ffd054;
+        }
+
         .event__rollup-btn {
-            position: relative;
-            background-color: transparent;
-            border: none;
-        }
-
-        .event__rollup-btn::after {
-            content: "";
-            position: absolute;
-            top: 5px;
-            left: 50%;
-            width: 15px;
-            height: 15px;
-            border-right: 2px solid #000000;
-            border-bottom: 2px solid #000000;
-            transform: translate(-50%, -50%) rotate(225deg);
-            -webkit-transition: border-color 0.2s, -webkit-transform 0.6s;
-            transition: border-color 0.2s, -webkit-transform 0.6s;
-            transition: border-color 0.2s, transform 0.6s;
-            transition: border-color 0.2s, transform 0.6s, -webkit-transform 0.6s;
-        }
-
-        .event__rollup-btn:hover::after {
-            border-color: #0d8ae4;
+            margin-left: 20px;
         }
     }
 
     .event__details {
-        padding: 20px;
+        padding: 20px 24px;
         border-top: 2px solid #ffd054;
 
         .event__section-title {
@@ -174,5 +162,22 @@ label {
 
     .ng-value-container {
         padding: 0;
+        cursor: pointer;
+    }
+
+    .ng-arrow-wrapper {
+        width: 0;
+        padding: 0;
     }
 }
+
+::ng-deep .ng-select.ng-select-focused .ng-select-container {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.mat-input-element {
+    width: 120px;
+    padding-left: 10px;
+}
+

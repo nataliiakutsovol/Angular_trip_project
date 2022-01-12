@@ -8,7 +8,8 @@ import { TripModule } from './modules/trip-module/trip.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 
-import { tripsReducer, destinationsReducer, offersReducer } from 'src/app/core/state/trip-list.reducer';
+import { tripsReducer, destinationsReducer, offersReducer, newFormReducer, editReducer } from 'src/app/core/state/trip-list.reducer';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { tripsReducer, destinationsReducer, offersReducer } from 'src/app/core/s
     HttpClientModule,
     TripModule,
     NgbModule,
-    StoreModule.forRoot({destinations: destinationsReducer, trips: tripsReducer, offers: offersReducer }, {})
+    StoreModule.forRoot({destinations: destinationsReducer, trips: tripsReducer, offers: offersReducer, isNewTripOpened: newFormReducer, isEditModeOpened: editReducer }, {}),
+    NoopAnimationsModule
   ],
   providers: [
     {

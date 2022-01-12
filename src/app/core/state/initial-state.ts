@@ -7,10 +7,14 @@ export interface TripState {
     trips: TripItemModel[],
     destinations: TripDestinationsModel[],
     offers: TripOffersModel[],
+    isNewTripOpened: boolean,
+    isEditModeOpened: boolean,
 }
 
 export const initialTripState: TripState = {
     trips: [],
     destinations: [],
     offers: [],
+    isNewTripOpened: false,
+    isEditModeOpened: false,
 }

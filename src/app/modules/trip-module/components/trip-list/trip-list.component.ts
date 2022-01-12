@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { TripState } from 'src/app/core/state/initial-state';
+import { selectNewForm } from 'src/app/core/state/trip.selectors';
 import { HeaderLables } from './config'
 
 @Component({
@@ -9,8 +13,8 @@ import { HeaderLables } from './config'
 export class TripListComponent implements OnInit {
 
   headerLables = HeaderLables;
-  
-  constructor() {}
+  isNewTripOpened$: Observable<Boolean> = this.store.pipe(select(selectNewForm))
+  constructor(private store: Store<TripState>,) {}
 
   ngOnInit(): void {
   }

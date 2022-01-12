@@ -18,3 +18,13 @@ export const selectOffers = createSelector(
     (state: TripState ) => state.offers,
     (offers: Array<TripOffersModel>) => offers
 )
+
+export const selectNewForm = createSelector(
+    (state: TripState ) => state.isNewTripOpened,
+    (isNewTripOpened: boolean) => isNewTripOpened
+)
+
+export const selectEditMode = createSelector(
+    (state: TripState ) => state.isEditModeOpened,
+    (isEditModeOpened: boolean) => isEditModeOpened
+)

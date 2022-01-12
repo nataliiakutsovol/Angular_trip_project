@@ -1,5 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { TripItemComponent } from './trip-item.component';
 
@@ -11,6 +12,7 @@ describe('TripItemComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ TripItemComponent ],
       imports: [ HttpClientTestingModule],
+      providers: [ provideMockStore({}) ],
     })
     .compileComponents();
   });
