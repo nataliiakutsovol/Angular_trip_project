@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { TripItemModel } from 'src/app/core/models/trip-item.model';
 import { TripState } from 'src/app/core/state/initial-state';
 import { retrivedNewForm } from 'src/app/core/state/trip.actions';
-import { selectNewForm } from 'src/app/core/state/trip.selectors';
+import { selectNewForm, selectTripList } from 'src/app/core/state/trip.selectors';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,7 @@ import { selectNewForm } from 'src/app/core/state/trip.selectors';
 })
 export class HeaderComponent implements OnInit {
 
+  tripList$: Observable<TripItemModel[]> = this.store.pipe(select(selectTripList));
   isNewTripOpened$: Observable<Boolean> = this.store.pipe(select(selectNewForm))
   constructor(private store: Store<TripState>,) { }
 

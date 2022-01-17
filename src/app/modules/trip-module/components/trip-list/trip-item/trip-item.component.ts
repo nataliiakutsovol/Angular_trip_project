@@ -15,7 +15,7 @@ import { retrievedEditMode, retrievedTripList } from 'src/app/core/state/trip.ac
 })
 export class TripItemComponent implements OnInit {
 
-  selectedItemId: any;
+  selectedItemIndex: any;
   tripList$: Observable<TripItemModel[]> = this.store.pipe(select(selectTripList));
   isEditModeOpened$: Observable<Boolean> = this.store.pipe(select(selectEditMode));
 
@@ -54,8 +54,8 @@ export class TripItemComponent implements OnInit {
     return './../../../../../assets/img/png/' + type + '.png';
   }
 
-  openEditMode(item: any) {
+  openEditMode(i: number) {
     this.store.dispatch(retrievedEditMode({ isEditModeOpened: true }));
-    this.selectedItemId = item.id;
+    this.selectedItemIndex = i;
   }
 }

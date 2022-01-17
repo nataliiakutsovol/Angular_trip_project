@@ -72,7 +72,7 @@
         </div>
 
         <button class="event__save-btn  btn  btn--blue" type="submit" [disabled]="!tripForm.valid">Save</button>
-        <button class="event__reset-btn btn" type="reset">Delete</button>
+        <button class="event__reset-btn btn" type="reset" (click)="deleteTrip()" [disabled]="!selectedItem">Delete</button>
     
         <button class="event__rollup-btn" type="button" (click)="closeEditForm()"></button>
     </section>

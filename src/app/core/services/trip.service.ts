@@ -27,7 +27,15 @@ export class TripService {
     return this.http.get<TripOffersModel[]>(`${this.server_api}/offers`);
   }
 
+  createTripItem(body: any): Observable<any> {
+    return this.http.post<any>(`${this.server_api}/points`, body)
+  }
+
   updateTripItem(pointId: number, body: any): Observable<any> {
     return this.http.put<any>(`${this.server_api}/points/:${pointId}`, body)
+  }
+
+  deleteTripItem(pointId: number): Observable<any> {
+    return this.http.delete<any>(`${this.server_api}/points/${pointId}`)
   }
 }

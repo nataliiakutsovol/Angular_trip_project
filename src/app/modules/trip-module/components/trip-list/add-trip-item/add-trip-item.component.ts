@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TripService } from 'src/app/core/services/trip.service';
 import { Store, select } from '@ngrx/store';
 import { selectOffers, selectDestinations } from 'src/app/core/state/trip.selectors';
-import { retrievedDestinations, retrivedNewForm, retrievedEditMode, retrievedOffers } from 'src/app/core/state/trip.actions';
+import { retrievedDestinations, retrivedNewForm, retrievedEditMode, retrievedOffers, deleteTrip } from 'src/app/core/state/trip.actions';
 import { Observable } from 'rxjs';
 import { TripState } from 'src/app/core/state/initial-state';
 import { TripDestinationsModel } from 'src/app/core/models/trip-destinations.model';
@@ -58,9 +58,9 @@ export class AddTripItemComponent implements OnInit {
       destination: [this.selectedItem ? this.selectedItem.destination.name : 'Rome', Validators.required],
       date_from: [this.selectedItem ? this.selectedItem.date_from : null, Validators.required],
       date_to: [this.selectedItem ? this.selectedItem.date_to : null, Validators.required],
-      base_price: [this.selectedItem ? this.selectedItem.base_price : '500', Validators.required],
-      offers: [],
-      is_favorite: this.selectedItem ? this.selectedItem.is_favorite : false
+      base_price: [this.selectedItem ? this.selectedItem.base_price : 500, Validators.required],
+      offers: [this.selectedItem ? this.selectedItem.offers : []],
+      is_favorite: this.selectedItem ? this.selectedItem.is_favorite : false,
     })
   }
 
@@ -88,10 +88,23 @@ export class AddTripItemComponent implements OnInit {
     : this.store.dispatch(retrivedNewForm({ isNewTripOpened: false }));
   }
 
+  createTrip() {
+    this.tripService.createTripItem(this.tripForm.value).subscribe();
+  }
+
+  updateTrip() {
+    this.tripService.updateTripItem(this.selectedItem.id, this.tripForm.value).subscribe();
+  }
+
+  deleteTrip() {
+    this.tripService.deleteTripItem(this.selectedItem.id).subscribe();
+    this.store.dispatch(retrievedEditMode({ isEditModeOpened: false }));
+  }
+
   submit(): void {
     if (this.tripForm.valid) {
       this.onSubmit.emit(this.tripForm.value);
-      console.log(this.tripForm.value)
+      this.createTrip();
     }
   }
 }

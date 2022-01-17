@@ -11,7 +11,7 @@
         </div>
         <div>
             <p class="trip-info__cost">
-                Total: €&nbsp;<span class="trip-info__cost-value">2300</span>
+                Total: €&nbsp;<span class="trip-info__cost-value">{{(tripList$ | async) | counter}}</span>
             </p>
             <button class="trip-main__event-add-btn btn btn--big btn--yellow" type="button" (click)="openEditForm()">+ New event</button>
         </div>

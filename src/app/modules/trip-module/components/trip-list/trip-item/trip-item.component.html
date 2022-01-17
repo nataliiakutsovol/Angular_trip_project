@@ -1,6 +1,6 @@
 
 <section *ngFor="let item of tripList$ | async; let i = index">
-    <div *ngIf="!(isEditModeOpened$ | async) || i != selectedItemId" class="d-flex justify-content-between trip-item">
+    <div *ngIf="!(isEditModeOpened$ | async) || i != selectedItemIndex" class="d-flex justify-content-between trip-item">
         <div class="d-flex col-3 mr-4">
             <div class="event__type">
                 <img class="event__type-icon" width="42" height="42" [src]="getIcon(item.type)" alt="Event type icon">
@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="event__time col-3">
-            <time class="event__start-time">{{ item.date_from | date: 'shortTime' }}</time> —
-            <time class="event__end-time">{{ item.date_to | date: 'shortTime' }}</time>
+            <time class="event__start-time">{{ item.date_from | date: 'shortDate' }}</time> —
+            <time class="event__end-time">{{ item.date_to | date: 'shortDate' }}</time>
         </div>
         <div class="col-2">€ {{ item.base_price }}</div>
         <div class="col-4">
@@ -23,10 +23,10 @@
             </div>
         </div>
         <div class="col-1 mt-3 ml-3">
-            <button class="event__rollup-btn" type="button" (click)="openEditMode(item)"></button>
+            <button class="event__rollup-btn" type="button" (click)="openEditMode(i)"></button>
         </div>
     </div>
-    <div *ngIf="(isEditModeOpened$ | async) && i == selectedItemId">
+    <div *ngIf="(isEditModeOpened$ | async) && i == selectedItemIndex">
         <app-add-trip-item [selectedItem]="item"></app-add-trip-item>
     </div>
 </section>
