@@ -9,7 +9,6 @@ import { retrievedFilterEverythingTripList,
   retrivedNewForm } 
 from 'src/app/core/state/trip.actions';
 import { selectFilteredTripList } from 'src/app/core/state/trip.selectors';
-import { FilterType } from 'src/app/modules/trip-module/components/trip-list/config'
 
 @Component({
   selector: 'app-header',

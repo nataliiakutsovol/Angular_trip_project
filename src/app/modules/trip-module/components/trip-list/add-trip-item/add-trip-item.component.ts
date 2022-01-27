@@ -7,7 +7,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TripItemModel, TripOffersModel } from 'src/app/core/models/trip-item.model';
 import { AllTripOffersModel } from 'src/app/core/models/trip-offers.model';
 import { selectDestinations, selectOffers } from 'src/app/core/state/trip.selectors';
-import { map } from 'rxjs/operators';
 import AppState from 'src/app/core/models/app-state.model';
 
 
@@ -57,7 +56,7 @@ export class AddTripItemComponent implements OnInit {
 
   selectOfferType(): void {
     const val = this.tripForm.controls.type.value;
-    this.selectedOffers, this.selectedType = this.offerList?.find(i => i.type === val)?.offers;
+    this.selectedOffers = this.selectedType = this.offerList?.find(i => i.type === val)?.offers;
   }
 
   selectDestination(): void {

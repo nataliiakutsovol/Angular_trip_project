@@ -1,4 +1,4 @@
-import { Action, createAction, props } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import { TripDestinationsModel } from '../models/trip-destinations.model';
 import { TripItemModel } from '../models/trip-item.model';
 import { AllTripOffersModel } from '../models/trip-offers.model';

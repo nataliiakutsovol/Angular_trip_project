@@ -2,10 +2,11 @@ import { TripItemModel } from '../../models/trip-item.model';
 import { TripState } from '../initial-state';
 
 export function tripListReducer (state: TripState, action: any) {
+    let trips = [...action.payload].sort((a: any, b: any) => { return +new Date(a.date_from) - +new Date(b.date_from) })
     return {
         ...state,
-        trips: [...action.payload],
-        filteredTrips: [...action.payload],
+        trips: [...trips],
+        filteredTrips: [...trips],
     }
 }
 
@@ -24,18 +25,17 @@ export function offersReducer(state: TripState, action: any) {
 }
 
 export function deleteTripReduces(state: TripState, action: any) {
-    let filteredTrips = [...state.filteredTrips];
-    let trips = filteredTrips.filter((trip: TripItemModel) => trip.id !== action.payload )
+    state.filteredTrips.filter((trip: TripItemModel) => trip.id !== action.payload )
     return {
         ...state,
-        trips: [...trips],
-        filteredTrips: [...trips],
+        trips: [...state.filteredTrips],
+        filteredTrips: [...state.filteredTrips],
     }
 }
 
 export function createNewTripReduces(state: TripState, action: any) {
     let trips = [...state.filteredTrips, action.payload]
-    trips.sort((a: any, b: any) => { return +new Date(a.date_from) - +new Date(b.date_from) })
+    .sort((a: any, b: any) => { return +new Date(a.date_from) - +new Date(b.date_from) })
     return {
         ...state,
         trips: [...trips],
@@ -44,11 +44,11 @@ export function createNewTripReduces(state: TripState, action: any) {
 }
 
 export function editTripReduces(state: TripState, action: any) {
-    //TODO: implement array modification
-    let trips = [...state.filteredTrips, action.payload]
+    let trips = state.filteredTrips?.filter((item) => item.id !== action.payload.id)
+    let sortedTrips = [...trips, action.payload].sort((a: any, b: any) => { return +new Date(a.date_from) - +new Date(b.date_from) })
     return {
         ...state,
-        trips: [...trips],
-        filteredTrips: [...trips],
+        trips: [...sortedTrips],
+        filteredTrips: [...sortedTrips],
     }
 }
