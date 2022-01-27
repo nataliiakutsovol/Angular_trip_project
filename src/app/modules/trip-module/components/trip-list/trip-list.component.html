@@ -5,7 +5,7 @@
             <p *ngFor="let label of headerLables" class="trip-label" [ngClass]="{'col-2' : label === 'PRICE', 'col-3': label !== 'PRICE', 'col-4' : label === 'OFFERS', 'mr-4': label === 'EVENT'}">{{ label }}</p>
         </div>
         <div *ngIf="isNewTripOpened$ | async">
-            <app-add-trip-item></app-add-trip-item>
+            <app-add-trip-item [destinations]="destinations$ | async" [offerList]="offers$ | async"></app-add-trip-item>
         </div>
         <app-trip-item></app-trip-item>
     </div>

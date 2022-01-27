@@ -4,14 +4,14 @@
         <div>
             <img class="page-header__logo" src="./../../../../../assets/img/logo.png" width="42" height="42" alt="Trip logo">
             <div class="d-flex filter-container">
-                <button class="btn-filter">PAST</button>
-                <button class="btn-filter">FUTURE</button>
-                <button class="btn-filter">EVERYTHING</button>
+                <button (click)="addPastFilter()" class="btn-filter">PAST</button>
+                <button (click)="addFutureFilter()"class="btn-filter">FUTURE</button>
+                <button (click)="addEverythingFilter()"class="btn-filter">EVERYTHING</button>
             </div>
         </div>
         <div>
             <p class="trip-info__cost">
-                Total: €&nbsp;<span class="trip-info__cost-value">{{(tripList$ | async) | counter}}</span>
+                Total: €&nbsp;<span class="trip-info__cost-value">{{(filteredTrips$ | async) | counter}}</span>
             </p>
             <button class="trip-main__event-add-btn btn btn--big btn--yellow" type="button" (click)="openEditForm()">+ New event</button>
         </div>

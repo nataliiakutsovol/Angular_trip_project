@@ -7,14 +7,14 @@ import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 import { TripModule } from './modules/trip-module/trip.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
-
-import { tripsReducer, destinationsReducer, offersReducer, newFormReducer, editReducer } from 'src/app/core/state/trip-list.reducer';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
+import { EffectsModule } from '@ngrx/effects';
+import { TripEffects } from './core/state/trip.effects';
+import { InitReducer } from './core/state/reducers/init.reducer';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +22,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     TripModule,
     NgbModule,
-    StoreModule.forRoot({destinations: destinationsReducer, trips: tripsReducer, offers: offersReducer, isNewTripOpened: newFormReducer, isEditModeOpened: editReducer }, {}),
+    StoreModule.forRoot({
+      trip: InitReducer
+    }, {}),
+    EffectsModule.forRoot([TripEffects]),
     NoopAnimationsModule
   ],
   providers: [

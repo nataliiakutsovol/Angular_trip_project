@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import AppState from 'src/app/core/models/app-state.model';
 import { TripItemModel } from 'src/app/core/models/trip-item.model';
-import { TripState } from 'src/app/core/state/initial-state';
-import { retrivedNewForm } from 'src/app/core/state/trip.actions';
-import { selectNewForm, selectTripList } from 'src/app/core/state/trip.selectors';
+import { retrievedFilterEverythingTripList, 
+  retrievedFilterFutureTripList, 
+  retrievedFilterPastTripList, 
+  retrivedNewForm } 
+from 'src/app/core/state/trip.actions';
+import { selectFilteredTripList } from 'src/app/core/state/trip.selectors';
+import { FilterType } from 'src/app/modules/trip-module/components/trip-list/config'
 
 @Component({
   selector: 'app-header',
@@ -13,14 +18,25 @@ import { selectNewForm, selectTripList } from 'src/app/core/state/trip.selectors
 })
 export class HeaderComponent implements OnInit {
 
-  tripList$: Observable<TripItemModel[]> = this.store.pipe(select(selectTripList));
-  isNewTripOpened$: Observable<Boolean> = this.store.pipe(select(selectNewForm))
-  constructor(private store: Store<TripState>,) { }
+  filteredTrips$: Observable<Array<TripItemModel>> = this.store.pipe(select(selectFilteredTripList));
+  constructor(private store: Store<AppState>,) { }
 
   ngOnInit(): void {
   }
 
   openEditForm() {
-    this.store.dispatch(retrivedNewForm({ isNewTripOpened: true }));
+    this.store.dispatch(new retrivedNewForm(true));
+  }
+
+  addPastFilter() {
+    this.store.dispatch(new retrievedFilterPastTripList())
+  }
+
+  addFutureFilter() {
+    this.store.dispatch(new retrievedFilterFutureTripList())
+  }
+
+  addEverythingFilter() {
+    this.store.dispatch(new retrievedFilterEverythingTripList())
   }
 }

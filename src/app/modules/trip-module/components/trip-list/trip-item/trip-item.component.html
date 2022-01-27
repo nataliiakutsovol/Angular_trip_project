@@ -1,13 +1,13 @@
 
-<section *ngFor="let item of tripList$ | async; let i = index">
+<section *ngFor="let item of filteredTrips$ | async; let i = index">
     <div *ngIf="!(isEditModeOpened$ | async) || i != selectedItemIndex" class="d-flex justify-content-between trip-item">
         <div class="d-flex col-3 mr-4">
             <div class="event__type">
-                <img class="event__type-icon" width="42" height="42" [src]="getIcon(item.type)" alt="Event type icon">
+                <img class="event__type-icon" width="42" height="42" [src]="item.type | icons" alt="Event type icon">
             </div>
             <div class="d-flex">
                 <div class="event__title">{{ item.type | titlecase }}</div>
-                <div class="ml-2 mr-2">{{ checkType(item.type) }}</div>
+                <div class="ml-2 mr-2">{{ item.type | offerType }}</div>
                 <div class="event__title">{{ item.destination.name }}</div>
             </div>
         </div>
@@ -27,6 +27,6 @@
         </div>
     </div>
     <div *ngIf="(isEditModeOpened$ | async) && i == selectedItemIndex">
-        <app-add-trip-item [selectedItem]="item"></app-add-trip-item>
+        <app-add-trip-item [selectedItem]="item" [destinations]="destinations$ | async" [offerList]="offers$ | async"></app-add-trip-item>
     </div>
 </section>

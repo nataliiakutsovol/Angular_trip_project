@@ -10,7 +10,9 @@ import { TripListComponent } from './components/trip-list/trip-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TripItemComponent } from './components/trip-list/trip-item/trip-item.component';
 import { AddTripItemComponent } from './components/trip-list/add-trip-item/add-trip-item.component';
-import { CounterPipe } from 'src/app/core/pipes/counter.pipe';
+import { CounterPipe } from 'src/app/core/pipes/counter/counter.pipe';
+import { IconsPipe } from 'src/app/core/pipes/icons/icons.pipe';
+import { OfferTypePipe } from 'src/app/core/pipes/offerType/offer-type.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { CounterPipe } from 'src/app/core/pipes/counter.pipe';
     HeaderComponent,
     TripItemComponent,
     AddTripItemComponent,
-    CounterPipe
+    CounterPipe,
+    IconsPipe,
+    OfferTypePipe,
   ],
   imports: [
     CommonModule,

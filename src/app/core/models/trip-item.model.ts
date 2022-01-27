@@ -1,12 +1,10 @@
+import { TripDestinationsModel } from "./trip-destinations.model";
+
 export interface TripItemModel {
     base_price?: number;
     date_from?: string;
     date_to?: string;
-    destination: {
-        description: string;
-        name: string;
-        pictures: Array<PictureModel>;
-    };
+    destination: TripDestinationsModel;
     id?: string;
     is_favorite?: boolean;
     offers?: Array<TripOffersModel>;

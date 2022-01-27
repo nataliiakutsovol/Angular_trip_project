@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { TripState } from 'src/app/core/state/initial-state';
-import { selectNewForm } from 'src/app/core/state/trip.selectors';
+import AppState from 'src/app/core/models/app-state.model';
+import { TripDestinationsModel } from 'src/app/core/models/trip-destinations.model';
+import { AllTripOffersModel } from 'src/app/core/models/trip-offers.model';
+import { selectDestinations, selectNewForm, selectOffers } from 'src/app/core/state/trip.selectors';
 import { HeaderLables } from './config'
 
 @Component({
@@ -14,10 +16,11 @@ export class TripListComponent implements OnInit {
 
   headerLables = HeaderLables;
   isNewTripOpened$: Observable<Boolean> = this.store.pipe(select(selectNewForm))
-  constructor(private store: Store<TripState>,) {}
+  destinations$: Observable<Array<TripDestinationsModel>> = this.store.pipe(select(selectDestinations));
+  offers$: Observable<Array<AllTripOffersModel>> = this.store.pipe(select(selectOffers));
+  
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
   }
-
-
 }

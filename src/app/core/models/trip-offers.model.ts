@@ -1,7 +1,7 @@
-export interface TripOffersModel {
-    offers: {
-        title: string, 
-        price: number
-    },
-    type:string
+import { TripOffersModel } from "./trip-item.model";
+
+
+export interface AllTripOffersModel {
+    offers: Array<TripOffersModel>;
+    type: string;
 }

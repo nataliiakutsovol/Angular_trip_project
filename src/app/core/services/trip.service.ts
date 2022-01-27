@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { TripDestinationsModel } from '../models/trip-destinations.model';
 import { TripItemModel  } from '../models/trip-item.model';
-import { TripOffersModel } from '../models/trip-offers.model';
+import { AllTripOffersModel } from '../models/trip-offers.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,27 +15,27 @@ export class TripService {
 
   constructor(private http: HttpClient) { }
 
-  getAllPoints(): Observable<TripItemModel[]> {
-    return this.http.get<TripItemModel[]>(`${this.server_api}/points`);
+  getAllPoints(): Observable<Array<TripItemModel>> {
+    return this.http.get<Array<TripItemModel>>(`${this.server_api}/points`);
   }
 
-  getAllDestinations(): Observable<TripDestinationsModel[]> {
-    return this.http.get<TripDestinationsModel[]>(`${this.server_api}/destinations`);
+  getAllDestinations(): Observable<Array<TripDestinationsModel>> {
+    return this.http.get<Array<TripDestinationsModel>>(`${this.server_api}/destinations`);
   }
 
-  getAllOffers(): Observable<TripOffersModel[]> {
-    return this.http.get<TripOffersModel[]>(`${this.server_api}/offers`);
+  getAllOffers(): Observable<Array<AllTripOffersModel>> {
+    return this.http.get<Array<AllTripOffersModel>>(`${this.server_api}/offers`);
   }
 
-  createTripItem(body: any): Observable<any> {
-    return this.http.post<any>(`${this.server_api}/points`, body)
+  createTripItem(body: TripItemModel): Observable<TripItemModel> {
+    return this.http.post<TripItemModel>(`${this.server_api}/points`, body)
   }
 
-  updateTripItem(pointId: number, body: any): Observable<any> {
-    return this.http.put<any>(`${this.server_api}/points/:${pointId}`, body)
+  updateTripItem(body: TripItemModel, pointId: string): Observable<TripItemModel> {
+    return this.http.put<TripItemModel>(`${this.server_api}/points/${pointId}`, body)
   }
 
-  deleteTripItem(pointId: number): Observable<any> {
-    return this.http.delete<any>(`${this.server_api}/points/${pointId}`)
+  deleteTripItem(pointId: string) {
+    return this.http.delete(`${this.server_api}/points/${pointId}`)
   }
 }
