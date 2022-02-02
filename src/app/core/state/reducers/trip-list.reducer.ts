@@ -44,11 +44,14 @@ export function createNewTripReduces(state: TripState, action: any) {
 }
 
 export function editTripReduces(state: TripState, action: any) {
-    let trips = state.filteredTrips?.filter((item) => item.id !== action.payload.id)
-    let sortedTrips = [...trips, action.payload].sort((a: any, b: any) => { return +new Date(a.date_from) - +new Date(b.date_from) })
+    let trips = state.filteredTrips.map(el => { 
+        el = el.id !== action.payload.id ? el : action.payload
+        return el
+    })
+    
     return {
         ...state,
-        trips: [...sortedTrips],
-        filteredTrips: [...sortedTrips],
+        trips: [...trips],
+        filteredTrips: [...trips],
     }
 }
